@@ -1,0 +1,19 @@
+#include <stdio.h>
+void Maximaum(){
+    int a , b , maximaum;
+    printf("merci de tapez la valeur de a :");
+    scanf("%d",&a);
+    printf("merci de tapez la valeur de b :");
+    scanf("%d",&b);
+    maximaum = a;
+   if(b>maximaum)
+   {
+       maximaum = b;
+   }
+   printf("le maximaum des deux nombres est :%d", maximaum);
+}
+int main() {
+    Maximaum();
+    return 0;
+}
+	

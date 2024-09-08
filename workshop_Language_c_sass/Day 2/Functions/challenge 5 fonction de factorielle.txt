@@ -1,0 +1,22 @@
+#include <stdio.h>
+void Factorielle(){
+    int n;
+    int Fact =1;
+    int i;
+    printf("merci de tapez la valeur de n superieur a 0 :");
+    scanf("%d",&n);
+   if(n>0)
+   {
+       for( i = 1 ; i<=n; i++)
+       {
+           Fact = Fact * i;
+       }
+       printf("le factorielle est : %d", Fact);
+   }
+
+  
+}
+int main() {
+    Factorielle();
+    return 0;
+}

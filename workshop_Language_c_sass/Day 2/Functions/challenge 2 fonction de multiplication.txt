@@ -1,0 +1,15 @@
+#include <stdio.h>
+void Produit(){
+    int a , b , produit;
+    printf("merci de tapez la valeur de a :");
+    scanf("%d",&a);
+    printf("merci de tapez la valeur de b :");
+    scanf("%d",&b);
+    produit = a * b ;
+    printf("le produit est :%d",produit);
+
+}
+int main() {
+    Produit();
+    return 0;
+}

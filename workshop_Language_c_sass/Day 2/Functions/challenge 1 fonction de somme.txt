@@ -1,0 +1,15 @@
+#include <stdio.h>
+void Somme(){
+    int a , b , somme;
+    printf("merci de tapez la valeur de a :");
+    scanf("%d",&a);
+    printf("merci de tapez la valeur de b :");
+    scanf("%d",&b);
+    somme = a + b ;
+    printf("la somme est :%d",somme);
+
+}
+int main() {
+    Somme();
+    return 0;
+}

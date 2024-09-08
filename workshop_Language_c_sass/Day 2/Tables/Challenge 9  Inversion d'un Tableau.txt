@@ -1,0 +1,27 @@
+#include <stdio.h>
+
+int main() {
+    int size ; 
+  
+   printf("Saiser le size de tableaux : ");
+   scanf("%d",&size);
+   
+   int tableaux1[size];
+   
+   for(int i ; i < size; i++){
+       printf("\nenter the number %d: ", i+1);
+       scanf("%d", &tableaux1[i]);
+   }
+   
+   printf("{");
+   
+   for(int i = size - 1; i>=0; i--){
+       printf("%d ",tableaux1[i]);
+   }
+   
+   printf("}");
+//   int tableaux2[size];
+
+  
+    return 0;
+}

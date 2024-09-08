@@ -1,0 +1,20 @@
+#include <stdio.h>
+
+int main() {
+    int n, i, max;
+    printf("Entrez le nombre d'éléments du tableau: ");
+    scanf("%d", &n);
+
+    int Tab[n];
+    for (i = 0; i < n; i++) {
+        printf("Élément %d: ", i + 1);
+        scanf("%d", &Tab[i]);
+    }
+    max = Tab[i-1];
+    for (i=1; i<n; i++){
+        if(max < Tab[i-1])
+            max=Tab[i-1];
+    }
+    printf("le maximaum est :%d",max);
+    return 0;
+}

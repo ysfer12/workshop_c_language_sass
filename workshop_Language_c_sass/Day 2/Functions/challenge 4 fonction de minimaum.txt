@@ -1,0 +1,18 @@
+#include <stdio.h>
+void Minimaum(){
+    int a , b , minimaum;
+    printf("merci de tapez la valeur de a :");
+    scanf("%d",&a);
+    printf("merci de tapez la valeur de b :");
+    scanf("%d",&b);
+    minimaum = a;
+   if(b<minimaum)
+   {
+       minimaum = b;
+   }
+   printf("le minimaum des deux nombres est :%d", minimaum);
+}
+int main() {
+    Minimaum();
+    return 0;
+}

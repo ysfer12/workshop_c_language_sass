@@ -1,0 +1,22 @@
+#include <stdio.h>
+
+int main() {
+    int tableau[100];
+    int taille;
+
+    printf("Combien d'éléments souhaitez-vous entrer (maximum %d) ? ", 100);
+    scanf("%d", &taille);
+
+    printf("Veuillez entrer %d éléments :\n", taille);
+    for (int i = 0; i < taille; i++) {
+        printf("Élément %d : ", i + 1);
+        scanf("%d", &tableau[i]);
+    }
+
+    printf("Les éléments du tableau sont :\n");
+    for (int i = 0; i < taille; i++) {
+        printf("%d\n", tableau[i]);
+    }
+
+    return 0;
+}
