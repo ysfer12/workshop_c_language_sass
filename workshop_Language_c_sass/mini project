@@ -1,0 +1,127 @@
+#include <stdio.h>
+#include <string.h>
+
+typedef struct {
+    char nom[100];
+    char tel[100];
+    char adresseMail[100];
+} Contact;
+
+int cpt = 0;
+Contact carnet[100];
+
+void ajouterContact() {
+    printf("Merci de saisir le nom : ");
+    scanf("%s", carnet[cpt].nom);
+    printf("Merci de saisir le numéro de téléphone : ");
+    scanf("%s", carnet[cpt].tel);
+    printf("Merci de saisir l'adresse mail : ");
+    scanf("%s", carnet[cpt].adresseMail);
+}
+
+void modifierContact() {
+    char Nom[100];
+    printf("Tapez le nom du contact à modifier : ");
+    scanf("%s", Nom); 
+
+    for (int i = 0; i < cpt; i++) {
+        if (strcmp(carnet[i].nom, Nom) == 0) {  
+            printf("Nouveau numéro de téléphone : ");
+            scanf("%s", carnet[i].tel);
+            printf("Nouvelle adresse mail : ");
+            scanf("%s", carnet[i].adresseMail);
+            printf("Le contact a été modifié avec succès.\n");
+            return;  
+        }
+    }
+    printf("Contact non trouvé.\n");  
+}
+
+void supprimerContact() 
+{
+    char Nom[100];
+    printf("Tapez le nom du contact à supprimer : ");
+    scanf("%s", Nom);
+     for (int i = 0; i < cpt; i++) {
+        if (strcmp(carnet[i].nom, Nom) == 0) 
+            {
+            for(int j=i;j<cpt-1;j++){
+            carnet[j]=carnet[j+1]; }
+             }
+        cpt--;
+        printf("le contact est bien supprimer");
+     }
+}
+
+void afficherContact() {
+    printf("Liste des contacts :\n");
+    for (int i = 0; i < cpt; i++) {
+        printf("Contact %d :\n", i + 1);
+        printf("Nom : %s\n", carnet[i].nom);
+        printf("Téléphone : %s\n", carnet[i].tel);
+        printf("Adresse mail : %s\n", carnet[i].adresseMail);
+        printf("--------------------------\n");
+    }
+}
+
+void rechercheContact() {
+  char Nom[100];
+    printf("Tapez le nom du contact à chercher : ");
+    scanf("%s", Nom); 
+    
+        for (int i = 0; i < cpt; i++) {
+        if (strcmp(carnet[i].nom, Nom) == 0) {  
+            printf("Nouveau numéro de téléphone : ");
+            scanf("%s", carnet[i].tel);
+            printf("Nouvelle adresse mail : ");
+            scanf("%s", carnet[i].adresseMail);
+            return;  
+        }
+        else{
+                printf("Contact non trouvé.\n");  
+
+        }
+    }
+
+    
+}
+
+int main() {
+    int choix;
+
+    do {
+        printf("Système de Gestion de Contacts\n");
+        printf("------------------------------\n");
+        printf("1 : Ajouter un contact\n");
+        printf("2 : Modifier un contact\n");
+        printf("3 : Supprimer un contact\n");
+        printf("4 : Afficher les contacts\n");
+        printf("5 : Chercher un contact\n");
+        printf("Tapez un choix s'il te plaît : ");
+        
+        scanf("%d", &choix);
+
+        switch (choix) {
+            case 1:
+                ajouterContact();
+                cpt++;
+                break;
+            case 2:
+                modifierContact();
+                break;
+            case 3:
+                supprimerContact();
+                break;
+            case 4:
+                afficherContact();
+                break;
+            case 5:
+                rechercheContact();
+                break;
+            default:
+                printf("Choix invalide, veuillez réessayer.\n");
+        }
+    } while (choix != 6);  
+
+    return 0;
+}
