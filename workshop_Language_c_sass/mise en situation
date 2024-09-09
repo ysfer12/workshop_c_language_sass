@@ -1,0 +1,103 @@
+// Online C compiler to run C program online
+#include <stdio.h>
+int main()
+{
+int plusElvee , plusBasse,totalVentes=0 , ventesMoyenne ;
+ int choix, i,nbrProduit;
+int tableauMontantVentes[10];
+printf("combien de produits ont été vendus aujourd'hui :");
+scanf("%d",&nbrProduit);
+for(  i=0; i<nbrProduit; i++){
+    printf("Entrer le montant de la vente du produit  %d:",i+1);
+    scanf("%d",&tableauMontantVentes[i]);
+    
+}
+do{
+printf("Que souhaitez-vous faire!\n");
+
+printf("1. calculer le total des ventes \n");
+    printf("2. Trouver la vente la plus élevée et la plus basse\n");
+    printf("3. Afficher les ventes supérieurs à une moyenne\n");
+    printf("4. Compter le nombre de ventes supérieurs à 100\n");
+    printf("5.Compter le nombre de ventes inférieurs à 100\n");
+    printf("6. Quitter\n");
+    scanf("%d",&choix);
+//calculer le total des ventes 
+if(choix==1){
+    for( i=0;i<nbrProduit;i++){
+    totalVentes += tableauMontantVentes[i];
+    }
+        printf("le total des ventes est : %d \n",totalVentes);
+}
+//Trouver la vente la plus élevée et la plus basse
+else if (choix ==2){
+    plusElvee=tableauMontantVentes[i-1];
+    for (i=1; i<nbrProduit; i++){
+        if(plusElvee < tableauMontantVentes[i-1])
+            plusElvee=tableauMontantVentes[i-1];
+    }
+    printf("la vente la plus élevée est :%d \n",plusElvee);
+plusBasse = tableauMontantVentes[i];
+    for (i=1; i<nbrProduit; i++){
+        if(plusBasse > tableauMontantVentes[i])
+            plusBasse=tableauMontantVentes[i];
+    }
+    printf("le la vente la plus basse est :%d  \n",plusBasse);
+}
+//Afficher les ventes supérieurs à une moyenne
+else if (choix==3){
+    for (i=0;i<nbrProduit;i++){
+            ventesMoyenne = nbrProduit/totalVentes;
+    }
+    for(i=0;i<nbrProduit;i++){
+    if (tableauMontantVentes[i]>100)
+    {
+        printf("les ventes supérieurs à une moyenne  :\n")
+    }
+    }
+}
+//Compter le nombre de ventes supérieurs à 100
+else if (choix==4){
+    for (i=0;i<nbrProduit;i++){
+            if(tableauMontantVentes[i]<100)
+            {
+                printf("le nombre de ventes supérieurs à 100 est:%d",tableauMontantVentes[i]);
+            }
+    }
+}
+//Compter le nombre de ventes inférieurs à 100
+
+else if (choix==5){
+    for (i=0;i<nbrProduit;i++){
+            if(tableauMontantVentes[i]<100)
+            {
+                printf("le nombre de ventes supérieurs à 100 est:%d",tableauMontantVentes[i]);
+            }
+    }
+}
+//Quitter
+else
+    printf("Au revoir!");
+
+    
+
+}while(choix != 0);
+/*do{
+    
+    switch(choix){
+        case 1 :
+               break;
+        case 2 :
+        case 3 :
+        case 4 :
+        case 5 :
+        case 6 :
+            printf("Au revoir!");
+    }
+   } while(choix != 6);*/
+
+    
+
+
+    return 0;
+}
