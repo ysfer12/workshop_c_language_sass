@@ -1,0 +1,21 @@
+// Online C compiler to run C program online
+#include <stdio.h>
+#include <string.h>
+int main() {
+   char chaineCaractere1[30];
+   char chaineCaractere2[30];
+
+   int cpt=0;
+   printf("merci de saisir la chaîne de caractères 1 : ");
+   scanf("%s",chaineCaractere1);
+   printf("merci de saisir la chaîne de caractères 2 : ");
+   scanf("%s",chaineCaractere2);
+    if(strcmp(chaineCaractere1,chaineCaractere2)==0){
+        printf("les chaînes de caractéres sont égales");
+    }
+    else{
+        printf("les chaînes de caractéres sont différentes");
+ 
+    }
+return 0;
+}

@@ -1,0 +1,16 @@
+// Online C compiler to run C program online
+#include <stdio.h>
+#include <string.h>
+int main() {
+   char chaineCaractere1[30];
+   char chaineCaractere2[30];
+
+   int cpt=0;
+   printf("merci de saisir la chaîne de caractères 1 : ");
+   scanf("%s",chaineCaractere1);
+   printf("merci de saisir la chaîne de caractères 2 : ");
+   scanf("%s",chaineCaractere2);
+   strcat(chaineCaractere1,chaineCaractere2);
+   printf("la résultat des deux chaînes de caractéres concatèner est :%s",chaineCaractere1);
+return 0;
+}

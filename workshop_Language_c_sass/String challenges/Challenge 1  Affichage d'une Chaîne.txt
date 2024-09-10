@@ -1,0 +1,21 @@
+//strlen()-->longueur de chaine de caractére;
+//strcpy()--> copier le contenu d'une chaine 'x' vers une autre 'y'
+//strncpy()--> copier n caractére d'une chaine 'x' à l'intérieur d'une autre 'y'
+//strcat() -->ajouter une chaine a la fin d'une autre chaine 
+    //strcat(d,c)
+//strncat() -->ajouter n caractére d'une chaine a la fin d'une autre chaine 
+    //strncat(d,c,n)
+//strcmp(): permet de comparer 2 chaines de caractéres ,caractére par caractére
+//strchr() permet de rechercher la 1ére occurrence du caractére dans la chaine.elle renvoie l'adresse sur la case de chaine contenant le caractére s'il existe, NULL sinon
+
+----------------------------------------
+// Online C compiler to run C program online
+#include <stdio.h>
+
+int main() {
+   char chaineCaractere[30];
+   printf("merci de saisir la chaîne de caractères : ");
+   scanf("%s",chaineCaractere);
+   printf("la chaine de caractéres est : %s",chaineCaractere);
+    return 0;
+}
