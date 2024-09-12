@@ -1,0 +1,387 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+typedef struct {
+    int jour;
+    int month;
+    int annee;
+} Date;
+
+typedef struct {
+    char nomDepartement[200];
+    float noteGenerale;
+} departement;
+
+typedef struct {
+    char numeroUnique[30];
+    char nom[100];
+    char prenom[100];
+    Date datenaissance;
+    departement depart;
+} Etudiant;
+
+Etudiant tableEtudiant[100];
+int countEtudiant = 0;
+void ajouterEtudiant() {
+    int choix;
+    printf("Merci de tapez le numero d'étudiant : ");
+    scanf("%s", tableEtudiant[countEtudiant].numeroUnique);
+    printf("Merci de tapez le nom d'étudiant : ");
+    scanf("%s", tableEtudiant[countEtudiant].nom);
+    printf("Merci de tapez le prenom d'étudiant : ");
+    scanf("%s", tableEtudiant[countEtudiant].prenom);
+    printf("Merci de tapez la date naissance (JJ/MM/YYYY) : ");
+    scanf("%d %d %d",&tableEtudiant[countEtudiant].datenaissance.jour,&tableEtudiant[countEtudiant].datenaissance.month,&tableEtudiant[countEtudiant].datenaissance.annee);
+    printf("1. cliquer sur 1 pour choix la departement anglais \n");
+    printf("2. cliquer sur 2 pour choix la departement math \n");
+    printf("3. cliquer sur 3 pour choix la departement softskills \n");
+    scanf("%d",&choix);
+
+
+    switch(choix){
+            case 1 : strcpy(tableEtudiant[countEtudiant].depart.nomDepartement,"anglais");
+            break;
+            case 2 : strcpy(tableEtudiant[countEtudiant].depart.nomDepartement,"math");
+            break;
+            case 3 : strcpy(tableEtudiant[countEtudiant].depart.nomDepartement,"softskills");
+            break;}
+    printf("Merci de tapez la note générale : ");
+    scanf("%f", &tableEtudiant[countEtudiant].depart.noteGenerale);
+    printf("Etudiant ajouté avec succès\n");
+    printf("-----------------------------------------------\n");
+    countEtudiant++;
+}
+void modifierEtudiant() {
+    char nouveauNumero[100];
+    printf("Merci de tapez le numero d'etudiant que vous souhaitez modifier : ");
+    scanf("%s", nouveauNumero);
+    for (int i = 0; i < countEtudiant; i++) {
+        if (strcmp(tableEtudiant[i].numeroUnique, nouveauNumero) == 0) {
+            printf("Merci de tapez le nouveau nom d'étudiant : ");
+            scanf("%s", tableEtudiant[i].nom);
+            printf("Merci de tapez le nouveau prenom d'étudiant : ");
+            scanf("%s", tableEtudiant[i].prenom);
+            printf("Merci de tapez la nouvelle date naissance (JJ/MM/YYYY) : ");
+            scanf("%d %d %d", &tableEtudiant[i].datenaissance.jour,
+                              &tableEtudiant[i].datenaissance.month,
+                              &tableEtudiant[i].datenaissance.annee);
+            printf("Merci de tapez le nouveau département : ");
+            scanf("%s", tableEtudiant[i].depart.nomDepartement);
+            printf("Merci de tapez la nouvelle note générale : ");
+            scanf("%f", &tableEtudiant[i].depart.noteGenerale);
+            printf("Etudiant modifié avec succès\n");
+            printf("-----------------------------------------------\n");
+            return; 
+        }
+    }
+    printf("Etudiant non trouvé\n");
+}
+void supprimerEtudiant() {
+    char numero[100];
+    printf("Merci de tapez le numero d'etudiant que vous souhaitez supprimer : ");
+    scanf("%s", numero);
+    for (int i = 0; i < countEtudiant; i++) {
+        if (strcmp(tableEtudiant[i].numeroUnique, numero) == 0) {
+            for (int j = i; j < countEtudiant - 1; j++) {
+                tableEtudiant[j] = tableEtudiant[j + 1];
+            }
+            countEtudiant--;
+            printf("Etudiant supprimé avec succès\n");
+            printf("-------------------------------\n");
+            break;
+        }
+    }
+    printf("Etudiant non trouvé\n");
+}
+void afficherEtudiant() {
+
+    printf("Liste des étudiants :\n");
+    for (int i = 0; i < countEtudiant; i++) {
+        printf("Etudiant %d :\n", i + 1);
+        printf("Le numéro d'étudiant est %s\n", tableEtudiant[i].numeroUnique);
+        printf("Le nom d'étudiant est %s\n", tableEtudiant[i].nom);
+        printf("Le prénom d'étudiant est %s\n", tableEtudiant[i].prenom);
+        printf("La date de naissance (JJ/MM/YYYY) : %d %d %d\n",
+               tableEtudiant[i].datenaissance.jour,
+               tableEtudiant[i].datenaissance.month,
+               tableEtudiant[i].datenaissance.annee);
+        printf("Le nom du département est %s\n", tableEtudiant[i].depart.nomDepartement);
+        printf("La note générale est : %.2f\n", tableEtudiant[i].depart.noteGenerale);
+        printf("-----------------------------------------------\n");
+    }
+}
+void rechercheParNom() {
+    char nom[100];
+    printf("Merci de tapez le nom d'étudiant que vous souhaitez rechercher : ");
+    scanf("%s", nom);
+    for (int i = 0; i < countEtudiant; i++) {
+        if (strcasecmp(tableEtudiant[i].nom, nom) == 0) {
+            printf("Le numéro d'étudiant est %s\n", tableEtudiant[i].numeroUnique);
+            printf("Le prénom d'étudiant est %s\n", tableEtudiant[i].prenom);
+            printf("La date de naissance (JJ/MM/YYYY) : %d %d %d\n",
+                   tableEtudiant[i].datenaissance.jour,
+                   tableEtudiant[i].datenaissance.month,
+                   tableEtudiant[i].datenaissance.annee);
+            printf("Le nom du département est %s\n", tableEtudiant[i].depart.nomDepartement);
+            printf("La note générale est : %.2f\n", tableEtudiant[i].depart.noteGenerale);
+            printf("-----------------------------------------------\n");
+            return; 
+        }
+    
+    else{
+        printf("l'ètudiant que vous souhaitez rechercher n'existe pas \n");
+    }
+    }
+}
+void rechercheParDepartement() {
+    char departement[100];
+    printf("Merci de tapez le nom du département que vous souhaitez rechercher : ");
+    scanf("%s", departement);
+    for (int i = 0; i < countEtudiant; i++) {
+        if (strcasecmp(tableEtudiant[i].depart.nomDepartement, departement) == 0) {
+            printf("Le nom d'étudiant est %s\n", tableEtudiant[i].nom);
+            printf("Le numéro d'étudiant est %s\n", tableEtudiant[i].numeroUnique);
+            printf("Le prénom d'étudiant est %s\n", tableEtudiant[i].prenom);
+            printf("La date de naissance (JJ MM YYYY) : %d %d %d\n",
+                   tableEtudiant[i].datenaissance.jour,
+                   tableEtudiant[i].datenaissance.month,
+                   tableEtudiant[i].datenaissance.annee);
+            printf("La note générale est : %.2f\n", tableEtudiant[i].depart.noteGenerale);
+            printf("-----------------------------------------------\n");
+            return; 
+        }
+    }
+    printf("Aucun étudiant trouvé dans ce département\n");
+    
+}
+void Recherche() {
+    int choix;
+    do {
+        printf("1. Recherche par nom d'étudiant\n");
+        printf("2. Recherche par nom de département\n");
+        printf("3. Retour\n");
+        printf("Merci de tapez un choix : ");
+        scanf("%d", &choix);
+        switch (choix) {
+            case 1:
+                rechercheParNom();
+                break;
+            case 2:
+                rechercheParDepartement();
+                break;
+            case 3:
+                break;
+            default:
+                printf("Choix invalide\n");
+                break;
+        }
+    } while (choix != 3);
+}
+void calculeMoyenneGenerale() {
+    float anglais = 0, math = 0, softskills = 0;
+    int anglaisCount = 0, mathCount = 0, softskillsCount = 0;
+    float totalNotes = 0;
+    int totalCount = 0;
+
+    for (int i = 0; i < countEtudiant; i++) {
+        if (strcmp(tableEtudiant[i].depart.nomDepartement, "anglais") == 0) {
+            anglais += tableEtudiant[i].depart.noteGenerale;
+            anglaisCount++;
+        } else if (strcmp(tableEtudiant[i].depart.nomDepartement, "math") == 0) {
+            math += tableEtudiant[i].depart.noteGenerale;
+            mathCount++;
+        } else if (strcmp(tableEtudiant[i].depart.nomDepartement, "softskills") == 0) {
+            softskills += tableEtudiant[i].depart.noteGenerale;
+            softskillsCount++;
+        }
+        totalNotes += tableEtudiant[i].depart.noteGenerale;
+        totalCount++;
+    }
+
+    if (anglaisCount > 0) {
+        printf("La moyenne générale du département d'anglais est : %.2f\n", anglais / anglaisCount);
+    } 
+
+    if (mathCount > 0) {
+        printf("La moyenne générale du département de math est : %.2f\n", math / mathCount);
+    } 
+
+    if (softskillsCount > 0) {
+        printf("La moyenne générale du département de softskills est : %.2f\n", softskills / softskillsCount);
+    } 
+
+    
+    
+    if (totalCount > 0) {
+        printf("La moyenne générale de l'université est : %.2f\n", totalNotes / totalCount);
+    } 
+}
+void nombreTotalEtudiantsInscrits() {
+    printf("Le nombre total d'étudiants inscrits est : %d\n", countEtudiant);
+}
+    
+void nombreEtudiantsChaqueDepartement() { 
+    int etudiantAnglais = 0, etudiantMath = 0, etudiantSoftskills = 0;
+   // int reussiFrancais = 0, reussidMath = 0, reussiSoftskills = 0;
+    for (int i = 0; i < countEtudiant; i++) {
+        if (strcmp(tableEtudiant[i].depart.nomDepartement, "anglais") == 0) {
+            etudiantAnglais++;
+          //  if (tableEtudiant[i].depart.noteGenerale >= 10) //  reussiFrancais++;}
+        } 
+        else if (strcmp(tableEtudiant[i].depart.nomDepartement, "math") == 0) {
+            etudiantMath++;
+          //  if (tableEtudiant[i].depart.noteGenerale >= 10) {
+         //       reussidMath++;}
+        } 
+       else  if (strcmp(tableEtudiant[i].depart.nomDepartement, "softskills") == 0) {
+            etudiantSoftskills++;
+            //if (tableEtudiant[i].depart.noteGenerale >= 10) {
+             //   reussiSoftskills++;}
+        }
+    }
+    printf("Le nombre d'étudiants dans le département de anglais : %d\n", etudiantAnglais);
+    printf("Le nombre d'étudiants dans le département de math : %d\n", etudiantMath);
+    printf("Le nombre d'étudiants dans le département de softskills : %d\n", etudiantSoftskills);
+}
+void EtudiantsAyantMoyenneSeuil()
+{
+    float seuil;
+   // int numbreDetudaint = 0;
+   printf("les étudiants ayant une moyenne générale supérieure à  seuil sont \n");
+    printf("\n entrez le  seuil: ");
+    scanf("%f", &seuil);
+    for (int i = 0; i < countEtudiant; i++)
+    {
+        if (tableEtudiant[i].depart.noteGenerale >= seuil)
+        {
+            printf("Liste des étudiants :\n");
+        printf("Etudiant %d :\n", i + 1);
+        printf("Le numéro d'étudiant est %s\n", tableEtudiant[i].numeroUnique);
+        printf("Le nom d'étudiant est %s\n", tableEtudiant[i].nom);
+        printf("Le prénom d'étudiant est %s\n", tableEtudiant[i].prenom);
+        printf("La date de naissance (JJ MM YYYY) : %d %d %d\n",
+               tableEtudiant[i].datenaissance.jour,
+               tableEtudiant[i].datenaissance.month,
+               tableEtudiant[i].datenaissance.annee);
+        printf("Le nom du département est %s\n", tableEtudiant[i].depart.nomDepartement);
+        printf("La note générale est : %.2f\n", tableEtudiant[i].depart.noteGenerale);
+        printf("-----------------------------------------------\n");
+        
+    }  
+        else{
+            printf("aucun etudiant trouver");
+        }
+   }  
+   }
+    void etudiantSuperieureDixDansChaqueDepartement()
+{
+    int etudiantAnglais = 0, etudiantMath = 0, etudiantSoftskills = 0;
+    for (int i = 0; i < countEtudiant; i++)
+    {
+        if (strcmp(tableEtudiant[i].depart.nomDepartement, "anglais") == 0)
+        {
+            if (tableEtudiant[i].depart.noteGenerale >= 10)
+            {
+                etudiantAnglais++;
+            }
+        }
+        else if (strcmp(tableEtudiant[i].depart.nomDepartement, "math") == 0)
+        {
+            if (tableEtudiant[i].depart.noteGenerale >= 10)
+            {
+                etudiantMath++;
+            }
+        }
+        else if (strcmp(tableEtudiant[i].depart.nomDepartement, "SVT") == 0)
+        {
+            if (tableEtudiant[i].depart.noteGenerale >= 10)
+            {
+                etudiantSoftskills++;
+            }
+        }
+        printf("\nle nombre d'etudiant superieure a 10 dans chaque departement");
+    printf(" anglais: %d \n ", etudiantAnglais);
+    printf(" math: %d \n ", etudiantMath);
+    printf(" softskills: %d \n", etudiantSoftskills);
+    }
+}
+ void trierParNom()
+{
+    for (int i = 0; i < countEtudiant - 1; i++)
+    {
+        for (int j = i + 1; j < countEtudiant; j++)
+        {
+            if (strcasecmp(tableEtudiant[i].nom, tableEtudiant[j].nom) > 0)
+            {
+                Etudiant etud = tableEtudiant[i];
+                tableEtudiant[i] = tableEtudiant[j];
+                tableEtudiant[j] = etud;
+            }
+        }
+        
+        
+    }
+    printf("Etudiants tries par moyenne generale :\n");
+    afficherEtudiant();
+ }
+   
+    
+    
+int main() {
+    int choix;
+    do{
+        printf("1. Ajouter un étudiant\n");
+        printf("2. Modifier un étudiant\n");
+        printf("3. Supprimer un étudiant\n");
+        printf("4. Afficher les informations d'un étudiant\n");
+        printf("5. Calculer la moyenne générale\n");
+        printf("6. Afficher les statistiques\n");
+        printf("7. Rechercher un étudiant\n");
+        printf("8. Trier les étudiants\n");
+        printf("9. Quitter\n");
+        printf(" Merci d'entrez votre choix  :");
+         if(scanf("%d", &choix) != 1){
+            while(getchar() != '\n');
+            choix=0;
+        }
+        switch (choix) {
+            case 1:
+                ajouterEtudiant();
+                break;
+            case 2:
+                modifierEtudiant();
+                break;
+            case 3:
+                supprimerEtudiant();
+                break;
+            case 4:
+                afficherEtudiant();
+                break;
+            case 5:
+                calculeMoyenneGenerale();
+                break;
+            case 6:
+                 nombreTotalEtudiantsInscrits();
+                nombreEtudiantsChaqueDepartement();
+                EtudiantsAyantMoyenneSeuil();
+                etudiantSuperieureDixDansChaqueDepartement();
+                break;
+            case 7:
+                Recherche();
+                break;
+            case 8:
+                trierParNom();
+                break;
+            case 9:
+                printf("Sortie du programme.\n");
+                break;
+            default:
+                printf("Choix invalide\n");
+                break;
+        }
+    }
+    while(choix != 0);
+
+    return 0;
+}
